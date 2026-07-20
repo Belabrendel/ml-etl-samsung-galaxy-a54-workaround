@@ -221,30 +221,39 @@ Com todas as configurações realizadas:
 ```bash
 python main.py
 ```
+O fluxo executado pelo pipeline segue as três etapas tradicionais de um processo ETL:
 
-O fluxo executado será:
-
+```text
 EXTRACT
-   |
-   |-- /search
-   |-- /items
-   |-- /currency_conversions
-   |
-   v
+  |
+  |-- /search
+  |     Busca paginada dos anúncios
+  |
+  |-- /items
+  |     Consulta dos detalhes dos produtos
+  |
+  |-- /currency_conversions
+  |     Consulta da conversão monetária
+  |
+  v
 
-TRANSFORMCom o ambiente virtual ativo:
-   |
-   |-- filtros de negócio
-   |-- cálculo de preço USD
-   |-- criação do JOB_RUN
-   |
-   v
+TRANSFORM
+  |
+  |-- Aplicação das regras de negócio
+  |-- Filtro de produtos novos (`condition=new`)
+  |-- Cálculo do preço em USD
+  |-- Criação do `JOB_RUN`
+  |
+  v
 
 LOAD
-   |
-   v
+  |
+  |-- Persistência dos dados
+  |
+  v
 
-PostgreSQL;
+PostgreSQL
+```
 ### 9. Funcionamento dos fallbacks
 
 Caso a API esteja disponível, o pipeline utiliza os endpoints oficiais normalmente.
