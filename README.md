@@ -157,11 +157,11 @@ As credenciais não ficam armazenadas no código e são carregadas automaticamen
 
 ### 6. Configuração do ETL
 
-Os parâmetros do pipeline ficam no arquivo:
+Os parâmetros utilizados pelo pipeline são definidos externamente através do arquivo:
 
+```text
 config.yaml
-
-Exemplo:
+Essa abordagem permite alterar o comportamento do ETL sem modificar o código-fonte.Exemplo de configuração:
 
 api:
   base_url: https://api.mercadolibre.com
@@ -176,37 +176,44 @@ pagination:
   limit: 50
   max_total_records: 500
 
-Neste arquivo podem ser alterados:
+```
+
+Neste arquivo podem ser alterados, com o ambiente virtual ativo:
 
 produto pesquisado;
 país/site do Mercado Livre;
 limite de paginação;
 quantidade máxima de registros;
 endpoints utilizados.
+
 ### 7. Criar banco de dados PostgreSQL
 
 Crie o banco:
 
+```sql
 CREATE DATABASE mercadolibre_etl;
-
+```
 Conecte no banco:
 
+```bash
 psql -U postgres -d mercadolibre_etl
-
+```
 Execute o schema:
-
+```bash
 psql -U postgres -d mercadolibre_etl -f schema.sql
-
+```
 Após a execução, as tabelas serão criadas:
 
 items
 item_shipping_methods
 currency_conversion
-8. Executar o ETL
+
+### 8. Executar o ETL
 
 Com todas as configurações realizadas:
-
+```bash
 python main.py
+```
 
 O fluxo executado será:
 
@@ -218,7 +225,7 @@ EXTRACT
    |
    v
 
-TRANSFORM
+TRANSFORMCom o ambiente virtual ativo:
    |
    |-- filtros de negócio
    |-- cálculo de preço USD
@@ -230,7 +237,7 @@ LOAD
    |
    v
 
-PostgreSQL
+PostgreSQL;
 ### 9. Funcionamento dos fallbacks
 
 Caso a API esteja disponível, o pipeline utiliza os endpoints oficiais normalmente.
@@ -280,24 +287,26 @@ Os fallbacks existem apenas para permitir a validação completa do pipeline enq
 
 Após a execução, é possível verificar os dados carregados:
 
+```sql
 SELECT *
-FROM items;
-
+FROM items;Com o ambiente virtual ativo:
+```
 Verificar a última execução:
-
+```sql
 SELECT MAX(job_run)
 FROM items;
-
+```
 Verificar quantidade de anúncios:
-
+```sql
 SELECT COUNT(*)
 FROM items;
-
+```
 Verificar métodos de shipping:
-
+```sql
 SELECT *
 FROM item_shipping_methods;
-11. Logs
+```
+### 11. Logs
 
 Durante a execução são gerados logs contendo:
 
@@ -308,9 +317,9 @@ ativação dos fallbacks;
 status da carga no banco.
 
 Arquivo:
-
+```bash
 etl_run.log
-
+```
 Além disso, informações importantes também são exibidas no terminal durante a execução.
 
 ## Modelo de dados
