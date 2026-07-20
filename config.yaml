@@ -1,0 +1,25 @@
+# Arquivo de configuração do ETL - Mercado Livre
+# Nenhuma credencial deve estar aqui. Credenciais ficam em variáveis de ambiente (.env)
+api:
+  base_url: "https://api.mercadolibre.com"
+  search_endpoint: "/sites/{site_id}/search"
+  items_endpoint: "/items"            # multiget: /items?ids=ID1,ID2,...
+  currencies_endpoint: "/currencies"
+  currency_conversions_endpoint: "/currency_conversions/search"
+  site_id: "MLA"
+  request_timeout_seconds: 15
+  max_retries: 3
+  retry_backoff_seconds: 2
+etl:
+  search_query: "Samsung Galaxy A54"  # item escolhido para o desafio
+  condition: "new"                    # somente produtos novos
+  page_size: 50                       # paginação exigida pelo desafio
+  max_total_records: 500              # limite opcional de segurança
+  items_batch_size: 20                # limite da API para multiget de /items
+  source_currency: "ARS"
+  target_currency: "USD"
+  seed_items_file: "data/seed_item_ids.txt"
+  fixture_items_file: "data/fixture_items.json"
+logging:
+  level: "INFO"
+  log_file: "etl_run.log"
