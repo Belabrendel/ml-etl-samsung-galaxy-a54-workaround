@@ -97,7 +97,7 @@ Verifique as versões instaladas:
 python --version
 
 psql --version
-
+```
 2. Clonar o repositório
 
 Clone o projeto:
