@@ -129,10 +129,10 @@ pip install -r requirements.txt
 
 ##### As principais bibliotecas utilizadas são:
 
-requests → comunicação com a API Mercado Livre;
-python-dotenv → carregamento das variáveis de ambiente;
-psycopg2 → conexão com PostgreSQL;
-pyyaml → leitura do arquivo de configuração;
+requests → comunicação com a API Mercado Livre;  
+python-dotenv → carregamento das variáveis de ambiente;  
+psycopg2 → conexão com PostgreSQL;  
+pyyaml → leitura do arquivo de configuração;  
 tenacity → retry e backoff das chamadas HTTP.
 
 ### 5. Configuração das variáveis de ambiente
