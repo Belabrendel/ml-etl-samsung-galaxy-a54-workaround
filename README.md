@@ -102,31 +102,37 @@ psql --version
 ### 2. Clonar o repositório
 
 Clone o projeto:
+```bash
 
 git clone <URL_DO_REPOSITORIO>
 
 cd ml_etl
-
+```
 
 ### 3. Criar ambiente virtual Python
 
 Recomenda-se utilizar um ambiente virtual isolado:
+```bash
 
 python -m venv venv
-
+```
 #### Ative o ambiente:
 #####  Linux / MacOS
+```bash
 source venv/bin/activate
-
+```
 ##### Windows
-venv\Scripts\activate
+```bash
 
+venv\Scripts\activate
+```
 ### 4. Instalar dependências
 
 Com o ambiente virtual ativo:
+```bash
 
 pip install -r requirements.txt
-
+```
 ##### As principais bibliotecas utilizadas são:
 
 requests → comunicação com a API Mercado Livre;  
@@ -138,9 +144,10 @@ tenacity → retry e backoff das chamadas HTTP.
 ### 5. Configuração das variáveis de ambiente
 
 ##### Crie um arquivo .env a partir do exemplo:
+```bash
 
 cp .env.example .env
-
+```
 Preencha as informações necessárias:
 
 # Mercado Livre API
