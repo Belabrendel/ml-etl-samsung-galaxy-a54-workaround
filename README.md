@@ -83,7 +83,7 @@ Esta seção descreve o passo a passo para executar o pipeline ETL localmente.
 
 ---
 
-## 1. Pré-requisitos
+### 1. Pré-requisitos
 
 Antes de executar o projeto, é necessário possuir instalado:
 
@@ -98,7 +98,8 @@ python --version
 
 psql --version
 ```
-2. Clonar o repositório
+
+### 2. Clonar o repositório
 
 Clone o projeto:
 
@@ -106,26 +107,27 @@ git clone <URL_DO_REPOSITORIO>
 
 cd ml_etl
 
-3. Criar ambiente virtual Python
+
+### 3. Criar ambiente virtual Python
 
 Recomenda-se utilizar um ambiente virtual isolado:
 
 python -m venv venv
 
-Ative o ambiente:
-Linux / MacOS
+#### Ative o ambiente:
+#####  Linux / MacOS
 source venv/bin/activate
 
-Windows
+##### Windows
 venv\Scripts\activate
 
-4. Instalar dependências
+### 4. Instalar dependências
 
 Com o ambiente virtual ativo:
 
 pip install -r requirements.txt
 
-As principais bibliotecas utilizadas são:
+##### As principais bibliotecas utilizadas são:
 
 requests → comunicação com a API Mercado Livre;
 python-dotenv → carregamento das variáveis de ambiente;
@@ -133,34 +135,9 @@ psycopg2 → conexão com PostgreSQL;
 pyyaml → leitura do arquivo de configuração;
 tenacity → retry e backoff das chamadas HTTP.
 
-3. Criar ambiente virtual Python
+### 5. Configuração das variáveis de ambiente
 
-Recomenda-se utilizar um ambiente virtual isolado:
-
-python -m venv venv
-
-Ative o ambiente:
-
-Linux / MacOS
-source venv/bin/activate
-Windows
-venv\Scripts\activate
-4. Instalar dependências
-
-Com o ambiente virtual ativo:
-
-pip install -r requirements.txt
-
-As principais bibliotecas utilizadas são:
-
-requests → comunicação com a API Mercado Livre;
-python-dotenv → carregamento das variáveis de ambiente;
-psycopg2 → conexão com PostgreSQL;
-pyyaml → leitura do arquivo de configuração;
-tenacity → retry e backoff das chamadas HTTP.
-5. Configuração das variáveis de ambiente
-
-Crie um arquivo .env a partir do exemplo:
+##### Crie um arquivo .env a partir do exemplo:
 
 cp .env.example .env
 
@@ -178,7 +155,7 @@ POSTGRES_PASSWORD=
 
 As credenciais não ficam armazenadas no código e são carregadas automaticamente pelo arquivo config.py.
 
-6. Configuração do ETL
+### 6. Configuração do ETL
 
 Os parâmetros do pipeline ficam no arquivo:
 
@@ -206,7 +183,7 @@ país/site do Mercado Livre;
 limite de paginação;
 quantidade máxima de registros;
 endpoints utilizados.
-7. Criar banco de dados PostgreSQL
+### 7. Criar banco de dados PostgreSQL
 
 Crie o banco:
 
@@ -254,7 +231,7 @@ LOAD
    v
 
 PostgreSQL
-9. Funcionamento dos fallbacks
+### 9. Funcionamento dos fallbacks
 
 Caso a API esteja disponível, o pipeline utiliza os endpoints oficiais normalmente.
 
@@ -299,7 +276,7 @@ PostgreSQL
 
 Os fallbacks existem apenas para permitir a validação completa do pipeline enquanto o acesso de produção da API não está disponível.
 
-10. Validar execução
+### 10. Validar execução
 
 Após a execução, é possível verificar os dados carregados:
 
