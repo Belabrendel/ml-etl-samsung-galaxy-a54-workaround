@@ -259,7 +259,7 @@ PostgreSQL
 Caso a API esteja disponível, o pipeline utiliza os endpoints oficiais normalmente.
 
 Fluxo:
-
+```text
 API Mercado Livre
         |
         v
@@ -267,11 +267,11 @@ Transformação
         |
         v
 PostgreSQL
-
+```
 Caso os endpoints /search ou /items retornem erro 403, os fallbacks são acionados automaticamente.
 
 Fluxo alternativo:
-
+```text
 /search bloqueado
         |
         v
@@ -296,7 +296,7 @@ Transformação
         v
 
 PostgreSQL
-
+```
 Os fallbacks existem apenas para permitir a validação completa do pipeline enquanto o acesso de produção da API não está disponível.
 
 ### 10. Validar execução
